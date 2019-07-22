@@ -1,0 +1,64 @@
+﻿@model SpodIglyMVC.Models.Album
+@using SpodIglyMVC.Imfrastructure
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+<div id="productlist-content">
+    @Html.Action("GenresMenu")
+
+
+    <div id="productlist-rightsection">
+        <div id="breadcrumb-section">
+            <img src="../Content/Images/home-small.png" />
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+
+
+        <section id="product-details-section">
+            <div id="product-details-left">
+
+                <img src="@Url.AlbumCoverPath(Model.CoverFileName)" />
+
+                <div id="product-details-share">
+                    <a href="fbshare"></a>
+                    <div></div>
+                    <a href="twshare"></a>
+                </div>
+
+            </div>
+
+            <div id="product-details-right">
+                <div id="product-details-names">
+
+                    <h1>
+                        @Model.AlbumTitle
+                    </h1>
+
+                    <h2>
+                        @Model.ArtistName
+                    </h2>
+
+                </div>
+
+                <div id="product-details-price">
+                    <div>
+                        @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
+                    </div>
+                    <a href="@Url.Action("AddToCart","Cart",new { id = Model.AlbumId })"></a>
+                </div>
+
+                <div id="product-details-description">
+                    @Model.Description
+                </div>
+
+                <div id="product-details-info">
+                    Bezpłatna przesyłka. Czas realizacji 24h
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
